@@ -5,6 +5,7 @@
 #include "driver/uart.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
+#include "sim800.h"
 static const char *TAG = "GPS_NEO6M";
 
 #define TXD_PIN (GPIO_NUM_17)
@@ -62,6 +63,7 @@ void gps_rx_task(void *arg) {
 void app_main(void) {
     // Initialize the configured UART port
     init_uart();
+    init_sim_uart();
     ESP_LOGI(TAG, "UART initialized. Waiting for NEO-6M data...");
 
     // Create a background task to handle incoming serial data
